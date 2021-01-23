@@ -3,3 +3,6 @@ lib
 dist
 types
 node_modules
+coverage
+jest.config.js
+rollup.config.js

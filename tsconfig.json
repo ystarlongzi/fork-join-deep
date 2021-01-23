@@ -22,7 +22,7 @@
   },
   "include": [
     "src",
-    "rollup.config.js"
+    "__tests__"
   ],
   "exclude": [
     "node_modules",
@@ -30,8 +30,6 @@
     "lib",
     "dist",
     "demo",
-    "tests/**/*",
-    "**/*.spec.ts",
-    "**/*.spec.js"
+    "coverage"
   ]
 }
