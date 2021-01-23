@@ -4,7 +4,11 @@ node_js:
 cache:
   directories:
     - node_modules
+before_install:
+  - npm install codecov -g
 script:
   - npm install
   - npm run test
   - npm run eslint
+after_success:
+  - codecov
