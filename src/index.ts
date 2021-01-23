@@ -1,31 +1,35 @@
 import { Observable } from 'rxjs';
 
-function forkJoinDeep(sources: any, cb?: (result: any) => void) {
+function isType(source: any, typeName: string) {
+  return Object.prototype.toString.call(source) === `[object ${typeName}]`;
+}
+
+function walk(source: any, cb?: (result: any) => void) {
   return new Observable((obs) => {
     if (!cb) {
       cb = (result) => obs.next(result);
     }
 
-    if (sources instanceof Observable) {
-      sources.subscribe((result) => {
-        forkJoinDeep(result, cb).subscribe();
+    if (source instanceof Observable) {
+      source.subscribe((result) => {
+        walk(result, cb).subscribe();
       });
       return;
     }
 
-    if (Array.isArray(sources) || typeof sources === 'object') {
-      const newSources: any = Array.isArray(sources) ? [] : {};
-      let len = Array.isArray(sources)
-        ? sources.length
-        : Object.keys(sources).length;
+    if (isType(source, 'Array') || isType(source, 'Object')) {
+      const newSource: any = Array.isArray(source) ? [] : {};
+      let len = Array.isArray(source)
+        ? source.length
+        : Object.keys(source).length;
 
-      for (const key in sources) {
-        if (Object.prototype.hasOwnProperty.call(sources, key)) {
-          forkJoinDeep(sources[key]).subscribe((result) => {
+      for (const key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          walk(source[key]).subscribe((result) => {
             len -= 1;
-            newSources[key] = result;
+            newSource[key] = result;
             if (len === 0 && cb) {
-              cb(newSources);
+              cb(newSource);
             }
           });
         }
@@ -33,10 +37,10 @@ function forkJoinDeep(sources: any, cb?: (result: any) => void) {
       return;
     }
 
-    cb(sources);
+    cb(source);
   });
 }
 
-export default function (sources: any) {
-  return forkJoinDeep(sources);
+export default function forkJoinDeep(source: {[key: string]: any}) {
+  return walk(source);
 }
