@@ -1,0 +1,37 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "baseUrl": ".",
+    "charset": "utf8",
+    "checkJs": false,
+    "esModuleInterop": true,
+    "lib": [
+      "esnext",
+      "dom"
+    ],
+    "module": "es6",
+    "moduleResolution": "node",
+    "noEmit": false,
+    "noImplicitThis": true,
+    "removeComments": true,
+    "resolveJsonModule": true,
+    "paths": {},
+    "strict": true,
+    "target": "es5",
+    "sourceMap": true
+  },
+  "include": [
+    "src",
+    "rollup.config.js"
+  ],
+  "exclude": [
+    "node_modules",
+    "es",
+    "lib",
+    "dist",
+    "demo",
+    "tests/**/*",
+    "**/*.spec.ts",
+    "**/*.spec.js"
+  ]
+}
