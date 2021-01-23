@@ -20,9 +20,9 @@ function forkJoinDeep(sources: any, cb?: (result: any) => void) {
         : Object.keys(sources).length;
 
       for (const key in sources) {
-        if (sources.hasOwnProperty(key)) {
+        if (Object.prototype.hasOwnProperty.call(sources, key)) {
           forkJoinDeep(sources[key]).subscribe((result) => {
-            len--;
+            len -= 1;
             newSources[key] = result;
             if (len === 0 && cb) {
               cb(newSources);
