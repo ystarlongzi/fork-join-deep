@@ -1,10 +1,10 @@
 {
-  "name": "forkjoindeep",
+  "name": "fork-join-deep",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/forkJoinDeep.cjs.js",
-  "module": "dist/forkJoinDeep.esm.js",
-  "browser": "dist/forkJoinDeep.umd.js",
+  "main": "dist/fork-join-deep.cjs.js",
+  "module": "dist/fork-join-deep.esm.js",
+  "browser": "dist/fork-join-deep.umd.js",
   "scripts": {
     "build": "rm -rf ./dist && rollup --config",
     "test": "jest",

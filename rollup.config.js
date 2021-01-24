@@ -5,21 +5,21 @@ const config = {
   input: 'src/index.ts',
   output: [
     {
-      file: 'dist/forkJoinDeep.esm.js',
+      file: 'dist/fork-join-deep.esm.js',
       format: 'esm',
       sourcemap: true,
     },
     {
-      file: 'dist/forkJoinDeep.umd.js',
+      file: 'dist/fork-join-deep.umd.js',
       format: 'umd',
-      name: 'forkJoinDeep',
+      name: 'fork-join-deep',
       globals: {
         rxjs: 'RxJS',
       },
       sourcemap: true,
     },
     {
-      file: 'dist/forkJoinDeep.cjs.js',
+      file: 'dist/fork-join-deep.cjs.js',
       format: 'cjs',
       exports: 'default',
       sourcemap: true,
