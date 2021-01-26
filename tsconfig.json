@@ -11,6 +11,7 @@
     ],
     "module": "es6",
     "moduleResolution": "node",
+    "declaration": true,
     "noEmit": false,
     "noImplicitThis": true,
     "removeComments": true,

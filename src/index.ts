@@ -4,7 +4,7 @@ function isType(source: any, typeName: string) {
   return Object.prototype.toString.call(source) === `[object ${typeName}]`;
 }
 
-function walk(source: any, cb?: (result: any) => void) {
+function walk<T>(source: T, cb?: (result: any) => void): Observable<T> {
   return new Observable((obs) => {
     if (!cb) {
       cb = (result) => obs.next(result);
@@ -41,6 +41,6 @@ function walk(source: any, cb?: (result: any) => void) {
   });
 }
 
-export default function forkJoinDeep(source: {[key: string]: any}) {
+export default function forkJoinDeep<T extends {[key: string]: any}>(source: T): Observable<T> {
   return walk(source);
 }

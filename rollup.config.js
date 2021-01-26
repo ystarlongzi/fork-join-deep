@@ -1,5 +1,5 @@
 import { babel } from '@rollup/plugin-babel';
-import typescript from '@rollup/plugin-typescript';
+import typescript from 'rollup-plugin-typescript2';
 
 const config = {
   input: 'src/index.ts',
@@ -28,7 +28,11 @@ const config = {
   external: ['rxjs'],
   plugins: [
     babel(),
-    typescript(),
+    typescript({
+      tsconfigOverride: {
+        exclude: ['__tests__']
+      },
+    }),
   ],
 };
 
