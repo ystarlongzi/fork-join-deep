@@ -6,10 +6,10 @@
 ---
 
 [![Build Status](https://travis-ci.com/ystarlongzi/fork-join-deep.svg?branch=main)](https://travis-ci.com/ystarlongzi/fork-join-deep)
-[![codecov](https://codecov.io/gh/ystarlongzi/forkJoinDeep/branch/main/graph/badge.svg?token=Z3JXUC3XLK)](https://codecov.io/gh/ystarlongzi/forkJoinDeep)
+[![codecov](https://codecov.io/gh/ystarlongzi/fork-join-deep/branch/main/graph/badge.svg?token=Z3JXUC3XLK)](https://codecov.io/gh/ystarlongzi/fork-join-deep)
 ![npm](https://img.shields.io/npm/v/fork-join-deep)
 [![npm](https://img.shields.io/npm/dm/fork-join-deep)](https://www.npmtrends.com/fork-join-deep)
-[![MIT license](https://img.shields.io/github/license/ystarlongzi/forkJoinDeep)](https://github.com/ystarlongzi/forkJoinDeep/blob/main/LICENSE)
+[![MIT license](https://img.shields.io/github/license/ystarlongzi/fork-join-deep)](https://github.com/ystarlongzi/fork-join-deep/blob/main/LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
 
