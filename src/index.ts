@@ -11,8 +11,18 @@ function walk<T>(source: T, cb?: (result: any) => void): Observable<T> {
     }
 
     if (source instanceof Observable) {
+      let latestValue: any;
       source.subscribe((result) => {
-        walk(result, cb).subscribe();
+        latestValue = result;
+      }, (err) => {
+        if (!(err instanceof Error)) {
+          err = new Error(err);
+        }
+
+        // TODO: throw error or return error as result?
+        cb!(err);
+      }, () => {
+        walk(latestValue, cb).subscribe();
       });
       return;
     }

@@ -1,4 +1,5 @@
-import { of } from 'rxjs';
+import { interval, of, throwError } from 'rxjs';
+import { map, take } from 'rxjs/operators';
 import forkJoinDeep from '../src';
 
 describe('forkJoinDeep', () => {
@@ -55,6 +56,32 @@ describe('forkJoinDeep', () => {
         a: [1],
         b: ['b1', 'b2'],
         c: 'c',
+      });
+      done();
+    });
+  });
+
+  it('should support observable error', (done) => {
+    forkJoinDeep({
+      a: throwError('throw a!'),
+      b: of('b').pipe(
+        map(() => throwError(new Error('throw b!'))),
+      ),
+      c: 'c is normal!',
+    }).subscribe((result) => {
+      expect((result.a as any).message).toEqual('throw a!');
+      expect((result.b as any).message).toEqual('throw b!');
+      expect(result.c).toEqual('c is normal!');
+      done();
+    });
+  });
+
+  it('should support observable emit multiple times', (done) => {
+    forkJoinDeep({
+      a: interval(100).pipe(take(5)),
+    }).subscribe((result) => {
+      expect(result).toEqual({
+        a: 4,
       });
       done();
     });
