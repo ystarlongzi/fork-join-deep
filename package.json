@@ -1,6 +1,6 @@
 {
   "name": "fork-join-deep",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "",
   "main": "dist/fork-join-deep.cjs.js",
   "module": "dist/fork-join-deep.esm.js",
