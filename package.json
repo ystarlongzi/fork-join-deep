@@ -5,6 +5,7 @@
   "main": "dist/fork-join-deep.cjs.js",
   "module": "dist/fork-join-deep.esm.js",
   "browser": "dist/fork-join-deep.umd.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "build": "rm -rf ./dist && rollup --config",
     "release": "npm run build && dotenv release-it --",
