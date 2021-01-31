@@ -1,6 +1,6 @@
 <div align="center">
   <h1>fork-join-deep</h1>
-  <p>Like RxJS forkJoin operator, but deep traversal of the source.</p>
+  <p>Like RxJS <a href="https://rxjs-dev.firebaseapp.com/api/index/function/forkJoin">forkJoin</a> operator, but deep traversal of the source.</p>
 </div>
 
 ---
