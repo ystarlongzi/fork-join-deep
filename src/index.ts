@@ -10,18 +10,27 @@ function walk<T>(source: T, cb?: (result: any) => void): Observable<T> {
       cb = (result) => obs.next(result);
     }
 
+    const resolveError = (err: any) => {
+      if (!(err instanceof Error)) {
+        err = new Error(err);
+      }
+
+      // TODO: throw error or return error as result?
+      cb!(err);
+    };
+
+    if (source instanceof Promise) {
+      source.then((result) => {
+        walk(result, cb).subscribe();
+      }, resolveError);
+      return;
+    }
+
     if (source instanceof Observable) {
       let latestValue: any;
       source.subscribe((result) => {
         latestValue = result;
-      }, (err) => {
-        if (!(err instanceof Error)) {
-          err = new Error(err);
-        }
-
-        // TODO: throw error or return error as result?
-        cb!(err);
-      }, () => {
+      }, resolveError, () => {
         walk(latestValue, cb).subscribe();
       });
       return;

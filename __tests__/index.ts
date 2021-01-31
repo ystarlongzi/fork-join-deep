@@ -17,7 +17,7 @@ describe('forkJoinDeep', () => {
     });
   });
 
-  it('should return its own property', (done) => {
+  it('should only return its own property', (done) => {
     const source = Object.create({
       p1: 'p1',
       p2: of('p2'),
@@ -41,6 +41,37 @@ describe('forkJoinDeep', () => {
     };
     forkJoinDeep(source).subscribe((result) => {
       expect(result).toEqual(source);
+      done();
+    });
+  });
+
+  it('should support promise resolve', (done) => {
+    const resolveStr = 'promise resolve value';
+    forkJoinDeep({
+      a: new Promise((resolve) => {
+        setTimeout(() => {
+          resolve(resolveStr);
+        }, 300);
+      }),
+    }).subscribe((result) => {
+      expect(result).toEqual({
+        a: resolveStr,
+      });
+      done();
+    });
+  });
+
+  it('should support promise reject', (done) => {
+    const rejectStr = 'promise reject value';
+    forkJoinDeep({
+      // @ts-ignore
+      a: new Promise((_, reject) => {
+        setTimeout(() => {
+          reject(rejectStr);
+        }, 300);
+      }),
+    }).subscribe((result) => {
+      expect((result.a as any).message).toEqual(rejectStr);
       done();
     });
   });
